@@ -1,0 +1,12 @@
+{
+    "name": "partybot",
+    "version": "0.1",
+    "description": "Voice Chat Alert Bot",
+    "main": "bot.js",
+    "author": "baronbliss",
+    "dependencies": {
+        "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+        "discord.js": "^13.6.0",
+        "winston": "^3.4.0"
+    }
+}
