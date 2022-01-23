@@ -17,9 +17,6 @@ client.login(token);
 const generalID = '365275098229506049';
 const coolZoneID = '715920210892161046';
 const mordorRoleID = '822523543581229086';
-const partyBotID = '711729568519684159'
-
-
 
 client.on("voiceStateUpdate", (oldState, newState) => {
     const genChannel = client.channels.cache.get(generalID);
@@ -27,10 +24,11 @@ client.on("voiceStateUpdate", (oldState, newState) => {
     console.log("voice state changed");
     
   
+    let mordorRole = genChannel.guild.roles.cache.get(mordorRoleID);
     if (oldState.channelId !== coolZoneID && newState.channelId === coolZoneID) {
         let memberCount = coolZone.members.size;
         if (memberCount > 4) {
-            genChannel.send("<@&" + partyBotID + ">" + ": there are " + memberCount + " people in The Cool Zone!");
+            genChannel.send(mordorRole.toString() + ": there are " + memberCount + " people in The Cool Zone!\nLet's party!");
         }
 
     }
