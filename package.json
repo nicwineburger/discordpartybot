@@ -8,5 +8,9 @@
         "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
         "discord.js": "^13.6.0",
         "winston": "^3.4.0"
+    },
+    "scripts": {
+        "start": "node bot.js",
+        "dev": "nodemon bot.js"
     }
 }
