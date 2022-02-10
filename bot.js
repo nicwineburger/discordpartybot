@@ -41,8 +41,16 @@ client.on("disconnect", () => {
 	console.log('PartyBot is offline!'); 
 })
 
+let lastPingedMordorTimestamp = 0;
+
 // Send message to all users with role when voice channel has more than 4 people in it
 client.on("voiceStateUpdate", (oldState, newState) => {
+    // don't ping the group within four hours of last pinging the group
+    const hourInMilliseconds = 1000 * 60 * 60 * 4;
+    if (Date.now() - lastPingedMordorTimestamp < hourInMilliseconds) {
+        return;
+    }
+
     const genChannel = client.channels.cache.get(generalID);
     const coolZone = client.channels.cache.get(coolZoneID); 
     console.log("voice state changed");
@@ -52,8 +60,8 @@ client.on("voiceStateUpdate", (oldState, newState) => {
         let memberCount = coolZone.members.size;
         if (memberCount > 4) {
             genChannel.send(mordorRole.toString() + ": there are " + memberCount + " people in The Cool Zone!\nLet's party!");
+            lastPingedMordorTimestamp = Date.now();
         }
-        
     }
 })
 
